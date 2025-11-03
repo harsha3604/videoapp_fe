@@ -32,12 +32,15 @@ export default function LoginPage() {
         setMessage("Empty Credentials");
         setShowModal(true);
       } else {
-        const response = await fetch("http://localhost:8000/api/users/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include", // include cookies
-          body: JSON.stringify({ email, password: pass }),
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_FRONTEND_URL}api/users/login`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include", // include cookies
+            body: JSON.stringify({ email, password: pass }),
+          }
+        );
 
         if (response.ok) {
           const data = await response.json();

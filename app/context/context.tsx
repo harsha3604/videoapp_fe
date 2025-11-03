@@ -29,12 +29,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = async () => {
     try {
-      await fetch("http://localhost:8000/api/users/logout", {
+      await fetch(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/users/logout`, {
         method: "POST",
         credentials: "include", // important to send the cookie
       });
-      setUser(null);
       window.location.href = "/login";
+      setUser(null);
     } catch (err) {
       console.error("Logout failed:", err);
     }

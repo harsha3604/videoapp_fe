@@ -36,13 +36,16 @@ export default function SignupPage() {
     console.log(updateDetails);
 
     try {
-      const response = await fetch("http://localhost:8000/api/users/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updateDetails),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/users/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updateDetails),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
